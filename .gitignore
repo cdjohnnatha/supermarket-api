@@ -13,7 +13,6 @@
 !/log/.keep
 !/tmp/.keep
 
-=======
 *.rbc
 capybara-*.html
 .rspec
