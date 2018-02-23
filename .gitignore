@@ -37,7 +37,12 @@ config/initializers/secret_token.rb
 # TODO Comment out this rule if environment variables can be committed
 .env
 
-## Environment normalization:
+## Environment normalization:# Ignore test files
+/spec/fixtures/files/
+/spec/test_files/
+/public/uploads/
+/public/system/
+/uploads/
 /.bundle
 /vendor/bundle
 
@@ -55,3 +60,12 @@ bower.json
 # Ignore pow environment settings
 .powenv
 
+# Ignore coverage tempfiles.
+/coverage/*
+
+# Ignore test files
+/spec/fixtures/files/
+/spec/test_files/
+/public/uploads/
+/public/system/
+/uploads/

@@ -1,0 +1,6 @@
+{
+  "data": {
+    "type": "array",
+    "items": { "$ref": "user.json" }
+  }
+}

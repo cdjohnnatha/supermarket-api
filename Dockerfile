@@ -1,5 +1,5 @@
 # Base image:
-From ruby:2.3.3
+FROM ruby:2.3.3
 
 # MAINTAINER Claudio Djohnnatha Duarte Lourenco <cdjohnnatha@gmail.com>
 

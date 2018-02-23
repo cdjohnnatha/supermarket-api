@@ -1,0 +1,10 @@
+{
+  "data":{
+    "$ref": "user.json",
+    "properties": {
+      "relationships": {
+        "roles": { "$ref": "roles.json" }
+      }
+    }  
+  }
+}

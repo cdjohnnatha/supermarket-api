@@ -1,5 +1,5 @@
 DCMP = docker-compose
-APP = supermarket-api
+APP = supermarketapi
 DCMP_EXEC_APP = ${DCMP} exec ${APP}
 DCMP_RUN_APP = ${DCMP} run ${APP}
 
@@ -36,3 +36,7 @@ createdb:
 	bundle exec rails db:migrate
 	bundle exec rails db:seed
 	bundle exec rails db:test:prepare
+
+yarn-install:
+	${DCMP_RUN_APP} npm install yarn --silent && \
+	yarn install --modules-folder public/packs
