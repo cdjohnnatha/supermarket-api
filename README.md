@@ -1,5 +1,5 @@
-# Fractal Test
-Fractal Tecnologia back-end test.
+# Supermarket API
+Supermarket back-end test.
 
 ---
 
