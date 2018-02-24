@@ -35,7 +35,7 @@ config/initializers/secret_token.rb
 
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
-.env
+# .env
 
 ## Environment normalization:# Ignore test files
 /spec/fixtures/files/
@@ -69,3 +69,9 @@ bower.json
 /public/uploads/
 /public/system/
 /uploads/
+
+# Ignore DotEnv Rails
+.env.development
+.env.test
+
+/public/packs/
