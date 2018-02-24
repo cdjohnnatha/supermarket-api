@@ -1,0 +1,16 @@
+{
+  "nodeVersion": "v9.2.1",
+  "modulesFolders": [
+    "public/packs"
+  ],
+  "flags": [],
+  "linkedModules": [],
+  "topLevelPatterns": [
+    "swagger-ui-dist@^3.11.0"
+  ],
+  "lockfileEntries": {
+    "swagger-ui-dist@^3.11.0": "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-3.11.0.tgz#b93934685ef61da26181d1887006fa489f55692f"
+  },
+  "files": [],
+  "artifacts": {}
+}

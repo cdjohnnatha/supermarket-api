@@ -3,6 +3,7 @@
 module Api::V1
   class DocsController < ApiController
     skip_before_action :authenticate_user
+    skip_load_and_authorize_resource
     include Swagger::Blocks
 
     swagger_root do
@@ -37,13 +38,17 @@ module Api::V1
 
     # A list of all classes that have swagger_* declarations.
     SWAGGERED_CLASSES = [
+      Docs::Authentication,
+      Docs::V1::AuthenticationController,
+      Docs::User,
+      Docs::V1::UsersController,
       self,
     ].freeze
 
     def index
       swagger_data = Swagger::Blocks.build_root_json(SWAGGERED_CLASSES)
       File.open("#{Rails.root}/public/swagger.json", "wb") { |file| file.write(swagger_data.to_json) }
-      redirect_to "/api-docs.html?url=/swagger.json"
+      redirect_to "/api-docs.html?url=swagger.json"
     end
   end
 end

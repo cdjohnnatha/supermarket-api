@@ -1,24 +1,45 @@
-# README
+# Fractal Test
+Fractal Tecnologia back-end test.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
 
-Things you may want to cover:
+### Requirements ###
 
-* Ruby version
+* **[Docker 17.05.0-ce](https://www.docker.com/)**
+* **[docker-compose 1.11.2](https://docs.docker.com/compose/)**
 
-* System dependencies
+### Installation ###
 
-* Configuration
+  - user@user:~/path_to_cloned_folder$ **make build**
+  - user@user:~/path_to_cloned_folder$ **make create-db**
+  - user@user:~/path_to_cloned_folder$ **make yarn-install**
+  - user@user:~/path_to_cloned_folder$ **make up**
+  - **Manually install the dependencies that may have not been installed by the above command.**
 
-* Database creation
+1. If you want to access swagger doc, run:
+  - access in your browser: `http://localhost:3000/v1/docs`
 
-* Database initialization
+---
 
-* How to run the test suite
+## API Routes ##
 
-* Services (job queues, cache servers, search engines, etc.)
+### Author ###
+|   Action                                 | Method         | URL                                               
+| -----------------------------------------|----------------|----------------------------------------------------- 
+|    Swagger Docs                          |   `GET`        | /v1/docs              
+|    Get User Token                        |   `POST`       | /v1/user_token              
+|    List All Users                        |   `GET`        | /v1/users              
+|    Create New User                       |   `POST`       | /v1/users              
+|    Show User                             |   `GET`        | /v1/users/id              
+|    Update User                           |   `PATCH/PUT`  | /v1/users/id              
+|    Delete User                           |   `DELETE`     | /v1/users/id              
 
-* Deployment instructions
 
-* ...
+
+---
+
+## Contributors
+
+> Cláudio Djohnnatha ([cdjohnnatha](https://github.com/cdjohnnatha)) cdjohnnatha@gmail.com
+
+---
