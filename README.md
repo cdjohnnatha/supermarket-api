@@ -13,19 +13,22 @@ That API is used for create new supermarkets with products where each product ha
 ### Installation
 
 **In the path cloned folder**
+ 
+ ```  
+  make build
+  make create-db
+  make yarn-install
+  make up
+ 
+ ```
   
-  ```
-    make build
-    make create-db
-    make yarn-install
-    make up
-  ```
+  
 ---
+
 
 ## Swagger Docs
 
-1. If you want to access swagger doc, run:
-  - access in your browser: `http://localhost:3000/v1/docs`
+If you want to access swagger doc, access in your browser: `http://localhost:3000/v1/docs`
   
 ---
 
