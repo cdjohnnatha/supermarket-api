@@ -18,7 +18,7 @@
 
 require "json_matchers/rspec"
 require "simplecov"
-SimpleCov.start 'rails'
+SimpleCov.start
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

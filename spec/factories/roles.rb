@@ -11,11 +11,5 @@ FactoryBot.define do
     trait :admin do
       name "admin"
     end
-
-    trait :with_users do
-      after(:create) do |role|
-        role.users = create_list(:user, 2)
-      end
-    end
   end
 end

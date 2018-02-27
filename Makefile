@@ -23,6 +23,9 @@ console:
 restart-app:
 	${DCMP} restart ${APP}
 
+build:
+	${DCMP} build --no-cache
+
 rebuild:
 	make down
 	${DCMP} build --no-cache
@@ -31,11 +34,11 @@ docker-createdb:
 	${DCMP_RUN_APP} make createdb
 
 createdb:
-	${DCMP_RUN_APP} bundle exec rails db:drop
-	${DCMP_RUN_APP} bundle exec rails db:create
-	${DCMP_RUN_APP} bundle exec rails db:migrate
-	${DCMP_RUN_APP} bundle exec rails db:seed
-	${DCMP_RUN_APP} bundle exec rails db:test:prepare
+	bundle exec rails db:drop
+	bundle exec rails db:create
+	bundle exec rails db:migrate
+	bundle exec rails db:seed
+	bundle exec rails db:test:prepare
 
 yarn-install:
 	${DCMP_RUN_APP} yarn install --modules-folder public/packs
