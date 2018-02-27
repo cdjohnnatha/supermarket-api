@@ -42,6 +42,8 @@ module Api::V1
       Docs::V1::AuthenticationController,
       Docs::User,
       Docs::V1::UsersController,
+      Docs::Supermarket,
+      Docs::V1::SupermarketsController,
       self,
     ].freeze
 
