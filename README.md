@@ -1,29 +1,36 @@
 # Supermarket API
-Supermarket back-end test.
+Supermarket back-end.
+
+That API is used for create new supermarkets with products where each product have a smallest and highest price and you can search by bar code.  
 
 ---
 
-### Requirements ###
+## Requirements
 
 * **[Docker 17.05.0-ce](https://www.docker.com/)**
 * **[docker-compose 1.11.2](https://docs.docker.com/compose/)**
 
-### Installation ###
+### Installation
 
-  - user@user:~/path_to_cloned_folder$ **make build**
-  - user@user:~/path_to_cloned_folder$ **make create-db**
-  - user@user:~/path_to_cloned_folder$ **make yarn-install**
-  - user@user:~/path_to_cloned_folder$ **make up**
-  - **Manually install the dependencies that may have not been installed by the above command.**
+**In the path cloned folder**
+  
+  ```
+    make build
+    make create-db
+    make yarn-install
+    make up
+  ```
+---
+
+## Swagger Docs
 
 1. If you want to access swagger doc, run:
   - access in your browser: `http://localhost:3000/v1/docs`
-
+  
 ---
 
 ## API Routes ##
 
-### Author ###
 |   Action                                 | Method         | URL                                               
 | -----------------------------------------|----------------|----------------------------------------------------- 
 |    Swagger Docs                          |   `GET`        | /v1/docs              
@@ -33,9 +40,11 @@ Supermarket back-end test.
 |    Show User                             |   `GET`        | /v1/users/id              
 |    Update User                           |   `PATCH/PUT`  | /v1/users/id              
 |    Delete User                           |   `DELETE`     | /v1/users/id              
-
-
-
+|    Index Supermarket                     |   `GET`        | /v1/supermarkets
+|    Create Supermarket                    |   `POST`       | /v1/supermarkets              
+|    Show Supermarket                      |   `GET`        | /v1/supermarkets/id              
+|    Update Supermarket                    |   `PATCH/PUT`  | /v1/supermarkets/id              
+|    Delete Supermarket                    |   `DELETE`     | /v1/supermarkets/id              
 ---
 
 ## Contributors
