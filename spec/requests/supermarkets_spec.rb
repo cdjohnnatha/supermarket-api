@@ -12,7 +12,7 @@ RSpec.describe "Supermarkets", type: :request do
       before { create_list(:supermarket, 3) }
 
       context "when logged in" do
-        before { get v1_supermarkets_path, headers: authenticated_header(user) }
+        before(:each) { get v1_supermarkets_path, headers: authenticated_header(user) }
 
         it "should be returns success" do
           expect(response).to have_http_status(200)

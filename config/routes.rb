@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       # Other resources
       resources :users
       resources :supermarkets
+
+      resources :products
     end
   end
 end
