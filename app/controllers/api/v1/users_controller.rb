@@ -15,7 +15,9 @@ module Api::V1
 
     # GET /users/1
     def show
-      render json: UserWithRolesSerializer.new(@user).serialized_json
+      options = {}
+      options[:include] = [:roles]
+      render json: UserWithRolesSerializer.new(@user, options).serialized_json
     end
 
     # POST users

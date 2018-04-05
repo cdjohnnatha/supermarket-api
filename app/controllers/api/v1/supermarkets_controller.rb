@@ -4,7 +4,7 @@ module Api::V1
   class SupermarketsController < ApiController
     before_action :set_supermarket, only: [:show, :update, :destroy]
 
-    def index 
+    def index
       @supermarkets = Supermarket.all
 
       render json: SupermarketSerializer.new(@supermarkets).serialized_json
