@@ -4,22 +4,90 @@ class Docs::User
   include Swagger::Blocks
 
   swagger_schema :User do
-    key :required, [:name, :email, :password]
+    key :format, :object
+    key :required, [:data, :included]
 
-    property :id do
-      key :type, :integer
+    property :data do
+      key :format, :object
+      key :required, [:id, :type, :attributes, :relationships]
+
+      property :id do
+        key :type, :integer
+      end
+
+      property :type do
+        key :type, :string
+      end
+
+      property :attributes do
+        key :format, :object
+        key :required, [:name, :email, :password]
+
+        property :id do
+          key :type, :integer
+        end
+
+        property :name do
+          key :type, :string
+        end
+
+        property :email do
+          key :type, :string
+        end
+
+        property :password do
+          key :type, :string
+        end
+      end
+
+      property :relationships do
+        key :format, :object
+        key :required, [:roles]
+
+        property :roles do
+          key :format, :object
+          key :required, [:data]
+
+          property :data do
+            key :format, :object
+            key :required, [:id, :type]
+
+            property :id do
+              key :type, :integer
+            end
+
+            property :type do
+              key :type, :string
+            end
+          end
+        end
+      end
     end
 
-    property :name do
-      key :type, :string
-    end
+    property :included do
+      key :format, :object
+      key :required, [:id, :type, :attributes]
 
-    property :email do
-      key :type, :string
-    end
+      property :id do
+        key :type, :integer
+      end
 
-    property :password do
-      key :type, :string
+      property :type do
+        key :type, :string
+      end
+
+      property :attributes do
+        key :format, :object
+        key :required, [:id, :name]
+
+        property :id do
+          key :type, :integer
+        end
+
+        property :name do
+          key :type, :string
+        end
+      end 
     end
   end
 

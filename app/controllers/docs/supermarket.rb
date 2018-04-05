@@ -4,18 +4,36 @@ class Docs::Supermarket
   include Swagger::Blocks
 
   swagger_schema :Supermarket do
-    key :required, [:id, :name, :description]
+    key :format, :object
+    key :required, [:data]
 
-    property :id do
-      key :type, :integer
-    end
+    property :data do
+      key :format, :object
+      key :required, [:attributes, :type, :id]
 
-    property :name do
-      key :type, :string
-    end
+      property :id do
+        key :type, :integer
+      end
 
-    property :description do
-      key :type, :string
+      property :type do
+        key :type, :string
+      end
+
+      property :attributes do
+        key :required, [:id, :name, :description]
+
+        property :id do
+          key :type, :integer
+        end
+
+        property :name do
+          key :type, :string
+        end
+
+        property :description do
+          key :type, :string
+        end
+      end
     end
   end
 

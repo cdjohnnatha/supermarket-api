@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Supermarket < ApplicationRecord
-  has_and_belongs_to_many :products
-  
+  has_many :supermarket_products
+  has_many :products, through: :supermarket_products
+
   validates :name, presence: true
   validates :description, presence: false
 end

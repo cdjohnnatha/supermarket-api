@@ -23,7 +23,7 @@ class Docs::V1::ProductsController
     end
 
     operation :post do
-      key :description, "Creates a new product at store. Email is unique"
+      key :description, "Creates a new product at store."
       key :operationId, "addProduct"
       key :produces, [
         "application/json"
