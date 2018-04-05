@@ -39,7 +39,7 @@ gem "cancancan"
 
 # Gem to allow for custom representations of JSON responses
 # gem "active_model_serializers"
-gem 'fast_jsonapi'
+gem "fast_jsonapi"
 
 # Generates swagger-ui json files for Rails APIs with a simple DSL.
 gem "swagger-blocks"

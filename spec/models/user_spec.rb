@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
       end
     end
   end
-  
+
   describe "Active Records associations" do
     context "relationships" do
       it { should have_and_belong_to_many(:roles) }

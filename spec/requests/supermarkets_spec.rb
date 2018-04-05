@@ -122,12 +122,12 @@ RSpec.describe "Supermarkets", type: :request do
       let(:new_valid_attrs) { valid_attrs }
 
       context "when logged in" do
-        context "valid supermarket attributes"do
+        context "valid supermarket attributes" do
           before(:each) { put v1_supermarket_path(supermarket.id), params: new_valid_attrs, headers: authenticated_header(user) }
 
           it "should be returns success" do
-             expect(response.content_type).to eq("application/json")
-             expect(response).to have_http_status(200)
+            expect(response.content_type).to eq("application/json")
+            expect(response).to have_http_status(200)
           end
 
           it "validate supermarket serializer" do
@@ -171,22 +171,22 @@ RSpec.describe "Supermarkets", type: :request do
       let(:new_valid_attrs) { valid_attrs }
 
       context "when logged in" do
-        context "valid supermarket attributes"do
+        context "valid supermarket attributes" do
           before(:each) { patch v1_supermarket_path(supermarket.id), params: new_valid_attrs, headers: authenticated_header(user) }
 
           it "should be returns success" do
-             expect(response.content_type).to eq("application/json")
-             expect(response).to have_http_status(200)
+            expect(response.content_type).to eq("application/json")
+            expect(response).to have_http_status(200)
           end
 
           it "validate supermarket serializer" do
             expect(response).to match_response_schema("supermarket")
           end
 
-           it_behaves_like "a json pattern" do
-            let(:body) { json }
-            let(:attrs) { new_valid_attrs }
-          end
+          it_behaves_like "a json pattern" do
+           let(:body) { json }
+           let(:attrs) { new_valid_attrs }
+         end
 
           it_behaves_like "a supermarket attributes" do
             let(:body) { json }

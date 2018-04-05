@@ -14,12 +14,14 @@ That API is used for create new supermarkets with products where each product ha
 
 **In the path cloned folder**
  
+* Set a .env with correct informations, you can find an example in .env.development.sample **the create-db command won't work without it**
+* To set the application, follow the commands bellow:
+
  ```  
   make build
   make create-db
   make yarn-install
   make up
- 
  ```
   
   
