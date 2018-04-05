@@ -46,6 +46,8 @@ module Api::V1
       Docs::V1::SupermarketsController,
       Docs::Product,
       Docs::V1::ProductsController,
+      Docs::SupermarketProduct,
+      Docs::V1::SupermarketProductsController,
       self,
     ].freeze
 

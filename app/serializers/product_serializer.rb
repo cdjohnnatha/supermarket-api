@@ -2,5 +2,5 @@
 
 class ProductSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :name, :description, :barcode, :brand, :quantity
+  attributes :id, :name, :description, :barcode, :brand
 end
