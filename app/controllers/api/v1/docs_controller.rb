@@ -24,7 +24,7 @@ module Api::V1
         key :name, "Supermarket API"
         key :description, "Supermarket API operations"
       end
-      key :host, "supermarket-api.herokuapp.com"
+      key :host, "localhost:3000" # "supermarket-api.herokuapp.com"
       key :basePath, "/v1"
       key :consumes, ["application/json"]
       key :produces, ["application/json"]

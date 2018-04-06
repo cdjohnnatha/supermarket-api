@@ -7,6 +7,7 @@ class CreateSupermarketProducts < ActiveRecord::Migration[5.1]
       t.references :product, foreign_key: true, index: true
       t.float :price
       t.float :quantity
+      t.string :unit_measure
 
       t.timestamps
     end
