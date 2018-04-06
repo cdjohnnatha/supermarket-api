@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       end
 
       resources :products
+      get "/products/barcode/:barcode", to: "products#barcode", as: "product_barcode"
+      
     end
   end
 end

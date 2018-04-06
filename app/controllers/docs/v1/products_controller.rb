@@ -143,4 +143,33 @@ class Docs::V1::ProductsController
       end
     end
   end
+
+  swagger_path "/products/barcode/{barcode}" do
+    operation :get do
+      key :sumary, "Find a product by barcode"
+      key :description, "Returns a product by barcode"
+      key :operationId, "findByBarcodeAProduct"
+      key :produces, [
+        "application/json"
+      ]
+      key :tags, [
+        "Products"
+      ]
+      security do
+        key :auth, []
+      end
+
+      parameter do
+        key :in, :path
+        key :name, :barcode
+        key :description, "Barcode of Product"
+        key :required, true
+        key :type, :string
+      end
+
+      response 200 do
+        key :description, "products response"
+      end
+    end
+  end
 end

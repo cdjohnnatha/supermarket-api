@@ -3,6 +3,7 @@
 module Api::V1
   class ProductsController < ApiController
     before_action :set_product, only: [:show, :update, :destroy]
+    before_action :find_barcode, only: [:barcode]
 
     def index
       @products = Product.all
@@ -32,6 +33,10 @@ module Api::V1
       end
     end
 
+    def barcode
+      render json: ProductSerializer.new(@barcode).serialized_json
+    end
+
     def destroy
       @product.destroy
     end
@@ -43,6 +48,10 @@ module Api::V1
 
       def product_params
         params.require(:product).permit(:name, :barcode, :description, :brand, :quantity)
+      end
+
+      def find_barcode
+        @barcode = Product.find_by(barcode: params[:barcode])
       end
   end
 end
