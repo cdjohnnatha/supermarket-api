@@ -47,4 +47,4 @@ default: &default
 
 production:
   <<: *default
-  database: d3vo4pnu00mdlk
+  database: <%= ENV['DBPRODUCTION'] %>
