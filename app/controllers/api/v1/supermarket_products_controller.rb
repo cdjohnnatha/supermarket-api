@@ -42,11 +42,11 @@ module Api::V1
       end
 
       def product_array_params
-        params.require(:supermarket_products).map { |p| p.permit(:product_id, :price, :quantity) }
+        params.require(:supermarket_products).map { |p| p.permit(:product_id, :price, :quantity, :unit_measure) }
       end
 
       def product_params
-        params.require(:supermarket_products).permit(:price, :quantity)
+        params.require(:supermarket_products).permit(:price, :quantity, :unit_measure)
       end
 
       def set_supermarket_product

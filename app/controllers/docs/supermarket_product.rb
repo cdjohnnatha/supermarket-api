@@ -19,7 +19,7 @@ class Docs::SupermarketProduct
 
       property :attributes do
         key :type, :object 
-        key :required, [:id, :price, :quantity]
+        key :required, [:id, :price, :quantity, :unit_measure]
 
         property :id do
           key :type, :integer
@@ -31,6 +31,10 @@ class Docs::SupermarketProduct
 
         property :quantity do
           key :type, :number
+        end
+
+        property :unit_measure do
+          key :type, :string
         end
       end
 
@@ -80,7 +84,7 @@ class Docs::SupermarketProduct
     property :supermarket_products do
       key :type, :array
         items do
-          key :required, [:product_id, :price, :quantity]
+          key :required, [:product_id, :price, :quantity, :unit_measure]
 
           property :product_id do
             key :type, :integer
@@ -92,6 +96,10 @@ class Docs::SupermarketProduct
 
           property :quantity do
             key :type, :number
+          end
+
+          property :unit_measure do
+            key :type, :string
           end
         end
       end

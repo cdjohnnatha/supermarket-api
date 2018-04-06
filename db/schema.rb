@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227215522) do
+ActiveRecord::Schema.define(version: 20180406180313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180227215522) do
     t.float "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "unit_measure", limit: 15
     t.index ["product_id"], name: "index_supermarket_products_on_product_id"
     t.index ["supermarket_id"], name: "index_supermarket_products_on_supermarket_id"
   end

@@ -43,6 +43,14 @@ class Docs::V1::SupermarketProductsController
       end
 
       parameter do
+        key :in, :path
+        key :name, :supermarket_id
+        key :description, "Id of supermarket"
+        key :required, true
+        key :type, :integer
+      end
+
+      parameter do
         key :in, :body
         key :name, :product
         key :description, "Add product to supermarket"

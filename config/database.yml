@@ -37,13 +37,13 @@ default: &default
   password: <%= ENV['DBPASS'] %>
   port: <%= ENV['DBPORT'] %>
 
-# development:
-#   <<: *default
-#   database: SupermarketApi_development
+development:
+  <<: *default
+  database: SupermarketApi_development
 
-# test:
-#   <<: *default
-#   database: SupermarketApi_test
+test:
+  <<: *default
+  database: SupermarketApi_test
 
 production:
   <<: *default

@@ -6,4 +6,5 @@ class SupermarketProduct < ApplicationRecord
 
   validates :price, presence: true
   validates :quantity, presence: true
+  validates :unit_measure, presence: true
 end
