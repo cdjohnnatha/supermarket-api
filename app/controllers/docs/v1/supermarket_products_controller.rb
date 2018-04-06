@@ -17,13 +17,13 @@ class Docs::V1::SupermarketProductsController
       security do
         key :auth, []
       end
-       parameter do
-        key :in, :path
-        key :name, :supermarket_id
-        key :description, "Id of supermarket"
-        key :required, true
-        key :type, :integer
-      end
+      parameter do
+       key :in, :path
+       key :name, :supermarket_id
+       key :description, "Id of supermarket"
+       key :required, true
+       key :type, :integer
+     end
       response 200 do
         key :description, "supermarket products response"
       end
@@ -89,13 +89,13 @@ class Docs::V1::SupermarketProductsController
         key :type, :integer
       end
 
-       parameter do
-        key :in, :path
-        key :name, :id
-        key :description, "Id of product"
-        key :required, true
-        key :type, :integer
-      end
+      parameter do
+       key :in, :path
+       key :name, :id
+       key :description, "Id of product"
+       key :required, true
+       key :type, :integer
+     end
       response 200 do
         key :description, "product response"
         schema do

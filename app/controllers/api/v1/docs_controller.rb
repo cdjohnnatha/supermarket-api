@@ -48,6 +48,8 @@ module Api::V1
       Docs::V1::ProductsController,
       Docs::SupermarketProduct,
       Docs::V1::SupermarketProductsController,
+      Docs::SupermarketAddress,
+      Docs::V1::SupermarketAddressController,
       self,
     ].freeze
 

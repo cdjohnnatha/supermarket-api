@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Api::V1
   class SupermarketProductsController < ApiController
-     before_action :set_supermarket
-     before_action :set_supermarket_product, only: [:destroy, :show, :update]
-     before_action :set_options, only: [:index, :show]
+    before_action :set_supermarket
+    before_action :set_supermarket_product, only: [:destroy, :show, :update]
+    before_action :set_options, only: [:index, :show]
 
     def index
       supermarket_products = @supermarket.supermarket_products

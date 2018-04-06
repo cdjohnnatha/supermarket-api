@@ -87,7 +87,7 @@ class Docs::User
         property :name do
           key :type, :string
         end
-      end 
+      end
     end
   end
 

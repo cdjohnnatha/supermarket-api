@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :users
       resources :supermarkets do
         resources :products, controller: :supermarket_products
+        resources :address, except: [:show], controller: :supermarket_address
       end
 
       resources :products

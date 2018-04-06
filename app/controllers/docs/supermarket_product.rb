@@ -18,7 +18,7 @@ class Docs::SupermarketProduct
       end
 
       property :attributes do
-        key :type, :object 
+        key :type, :object
         key :required, [:id, :price, :quantity, :unit_measure]
 
         property :id do
@@ -79,29 +79,29 @@ class Docs::SupermarketProduct
   end
 
   swagger_schema :SupermarketProductInput do
-    key :required, [:supermarket_products]
+      key :required, [:supermarket_products]
 
-    property :supermarket_products do
-      key :type, :array
-        items do
-          key :required, [:product_id, :price, :quantity, :unit_measure]
+      property :supermarket_products do
+          key :type, :array
+          items do
+            key :required, [:product_id, :price, :quantity, :unit_measure]
 
-          property :product_id do
-            key :type, :integer
-          end
+            property :product_id do
+              key :type, :integer
+            end
 
-          property :price do
-            key :type, :number
-          end
+            property :price do
+              key :type, :number
+            end
 
-          property :quantity do
-            key :type, :number
-          end
+            property :quantity do
+              key :type, :number
+            end
 
-          property :unit_measure do
-            key :type, :string
+            property :unit_measure do
+              key :type, :string
+            end
           end
         end
-      end
     end
 end

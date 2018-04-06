@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406180313) do
+ActiveRecord::Schema.define(version: 20180406192105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +35,23 @@ ActiveRecord::Schema.define(version: 20180406180313) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "supermarket_addresses", force: :cascade do |t|
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
+    t.string "street_number"
+    t.string "street_name"
+    t.string "neighborhood"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "country"
+    t.string "place_id"
+    t.bigint "supermarket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["supermarket_id"], name: "index_supermarket_addresses_on_supermarket_id"
   end
 
   create_table "supermarket_products", force: :cascade do |t|
@@ -70,6 +89,7 @@ ActiveRecord::Schema.define(version: 20180406180313) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "supermarket_addresses", "supermarkets"
   add_foreign_key "supermarket_products", "products"
   add_foreign_key "supermarket_products", "supermarkets"
 end

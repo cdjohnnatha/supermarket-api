@@ -17,7 +17,7 @@ class Docs::Product
       property :type do
         key :type, :string
       end
-      
+
       property :attributes do
         key :format, :object
         key :required, [:id, :name, :description, :barcode, :brand, :quantity]
