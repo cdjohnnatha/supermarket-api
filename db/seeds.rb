@@ -14,8 +14,8 @@ Role.create([
   { name: "admin" }
 ])
 
-User.create([name: "admin_user", email: "super_user@user.com", password: "superuseradmin"])
-User.create([name: "cd", email: "cd@test.com", password: "123456789"])
+User.create([name: "admin_supermarket", email: "admin@supermarketapi.com", password: "adminsupermarket"])
+User.create([name: "user_supermarket", email: "user@supermarketapi.com", password: "usersupermarket"])
 Supermarket.create([name: "Supermarket 1", description: "Supermarket with many things"])
 Product.create([name: "Product 1", description: "product 1 is the best of them", barcode: "ASDF1", brand: "Nestle"])
 Product.create([name: "Product 2", description: "product 2 is the best of them", barcode: "ASDF2", brand: "Nestle"])
