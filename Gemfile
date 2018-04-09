@@ -44,6 +44,7 @@ gem "fast_jsonapi"
 # Generates swagger-ui json files for Rails APIs with a simple DSL.
 gem "swagger-blocks"
 
+gem "dotenv-rails"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
