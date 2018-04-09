@@ -3,8 +3,8 @@
 class CreateSupermarketAddresses < ActiveRecord::Migration[5.1]
   def change
     create_table :supermarket_addresses do |t|
-      t.decimal :lat, precision: 10, scale: 6
-      t.decimal :lng, precision: 10, scale: 6
+      t.decimal :lat
+      t.decimal :lng
       t.string :street_number
       t.string :street_name
       t.string :neighborhood

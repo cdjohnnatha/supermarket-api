@@ -1,0 +1,23 @@
+{
+  "allOf": [
+    { "$ref": "core.json#/definitions/single_core/data" },
+    {"attributes": 
+      {
+        "required": ["id", "lat", "lng", "street_number", "street_name", "neighborhood", "city", "state", "zip", "country"],
+        "properties": {
+          "id": { "type": "integer" },
+          "lat": { "type": "number" },
+          "lng": { "type": "number" },
+          "street_number": { "type": "string" },
+          "street_name": { "type": "string" },
+          "neighborhood": { "type": "string" },
+          "city": { "type": "string" },
+          "state": { "type": "string" },
+          "zip": { "type": "string" },
+          "country": { "type": "string" },
+          "place_id": { "type": "string" }
+        }
+      }
+    }
+  ]
+}

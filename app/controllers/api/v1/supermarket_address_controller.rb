@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Api::V1
-  class SupermarketAddressController < ApplicationController
+  class SupermarketAddressController < ApiController
     before_action :set_supermarket
     before_action :set_address, except: [:show, :create]
 
@@ -10,17 +10,17 @@ module Api::V1
     end
 
     def create
-      @address = @supermarket.create_supermarket_address(address_params)
+      address = @supermarket.create_supermarket_address(supermarket_address_params)
 
-      if @address.valid?
-        render json: SupermarketAddressSerializer.new(@address).serialized_json
+      if address.valid?
+        render json: SupermarketAddressSerializer.new(address).serialized_json
       else
-        render json: @address.errors, status: :unprocessable_entity
+        render json: address.errors, status: :unprocessable_entity
       end
     end
 
     def update
-      if @address.update(address_params)
+      if @address.update(supermarket_address_params)
         render json: SupermarketAddressSerializer.new(@address).serialized_json
       else
         render json: @address.errors, status: :unprocessable_entity
@@ -40,8 +40,8 @@ module Api::V1
         @address = @supermarket.supermarket_address
       end
 
-      def address_params
-        params.require(:supermarket_address).permit(:lat, :lng, :street_number, :street_name, :neighborhood, :city, :state, :zip, :country)
+      def supermarket_address_params
+        params.require(:supermarket_address).permit(:lat, :lng, :street_number, :street_name, :neighborhood, :city, :state, :zip, :country, :place_id)
       end
   end
 end

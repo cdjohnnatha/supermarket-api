@@ -12,5 +12,5 @@ class SupermarketAddress < ApplicationRecord
   validates :state, presence: true
   validates :zip, presence: true
   validates :country, presence: true
-  validates :supermarket_id, presence: true
+  validates :place_id, presence: false
 end

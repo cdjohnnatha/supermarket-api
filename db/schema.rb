@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -38,8 +36,8 @@ ActiveRecord::Schema.define(version: 20180406192105) do
   end
 
   create_table "supermarket_addresses", force: :cascade do |t|
-    t.decimal "lat", precision: 10, scale: 6
-    t.decimal "lng", precision: 10, scale: 6
+    t.decimal "lat"
+    t.decimal "lng"
     t.string "street_number"
     t.string "street_name"
     t.string "neighborhood"
@@ -59,9 +57,9 @@ ActiveRecord::Schema.define(version: 20180406192105) do
     t.bigint "product_id"
     t.float "price"
     t.float "quantity"
+    t.string "unit_measure"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "unit_measure", limit: 15
     t.index ["product_id"], name: "index_supermarket_products_on_product_id"
     t.index ["supermarket_id"], name: "index_supermarket_products_on_supermarket_id"
   end
