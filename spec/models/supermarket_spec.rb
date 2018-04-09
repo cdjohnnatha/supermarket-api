@@ -12,4 +12,12 @@ RSpec.describe Supermarket, type: :model do
       it { should validate_presence_of(:name) }
     end
   end
+
+  describe "Active Records associations" do
+    context "relationships" do
+      it { should have_many(:supermarket_products) }
+      it { should have_many(:products).through(:supermarket_products) }
+      it { should have_one(:supermarket_address) }
+    end
+  end
 end

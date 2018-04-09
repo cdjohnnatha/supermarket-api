@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'dotenv/load'
+
 module Api::V1
   class DocsController < ApiController
     skip_before_action :authenticate_user
@@ -24,7 +26,7 @@ module Api::V1
         key :name, "Supermarket API"
         key :description, "Supermarket API operations"
       end
-      key :host, "supermarket-api.herokuapp.com"
+      key :host, ENV['DOCS_HOST']
       key :basePath, "/v1"
       key :consumes, ["application/json"]
       key :produces, ["application/json"]

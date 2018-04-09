@@ -4,7 +4,7 @@
 
 class Product < ApplicationRecord
   has_many :supermarket_products
-  has_many :supermarkets, through: :supermarket_product
+  has_many :supermarkets, through: :supermarket_products
 
   validates :name, presence: true
   validates :description, presence: false

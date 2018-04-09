@@ -6,6 +6,5 @@ FactoryBot.define do
     description Faker::Lorem.sentence
     barcode Faker::Lorem.characters(20)
     brand Faker::Lorem.word
-    quantity Faker::Number.digit
   end
 end

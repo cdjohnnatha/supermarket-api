@@ -8,6 +8,5 @@ RSpec.shared_examples "a product attributes" do
     expect(json["data"]["attributes"]["description"]).to eq(attrs["product"]["description"])
     expect(json["data"]["attributes"]["barcode"]).to eq(attrs["product"]["barcode"])
     expect(json["data"]["attributes"]["brand"]).to eq(attrs["product"]["brand"])
-    expect(json["data"]["attributes"]["quantity"]).to eq(attrs["product"]["quantity"].to_i)
   end
 end

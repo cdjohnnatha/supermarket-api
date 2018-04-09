@@ -4,6 +4,7 @@ require "rails_helper"
 
 RSpec.describe "Users", type: :request do
   let(:valid_user_attrs) { { user: attributes_for(:user) }.as_json }
+  let(:admin_user) { create(:user, :with_admin_role) }
   let(:invalid_user_attrs) { { user: attributes_for(:user, name: nil) }.as_json }
 
   describe "/v1/users" do
@@ -36,7 +37,7 @@ RSpec.describe "Users", type: :request do
 
     context "POST" do
       context "valid_user_attrs" do
-        before(:each) { post v1_users_path, params: valid_user_attrs }
+        before(:each) { post v1_users_path, params: valid_user_attrs, headers: authenticated_header(admin_user) }
 
         it "should be returns a user created" do
           expect(response).to have_http_status(201)
@@ -59,7 +60,7 @@ RSpec.describe "Users", type: :request do
 
       context "invalid_user_attrs" do
         describe "invalid params" do
-          before(:each) { post v1_users_path, params: invalid_user_attrs }
+          before(:each) { post v1_users_path, params: invalid_user_attrs, headers: authenticated_header(admin_user) }
 
           it_behaves_like "a unprocessable error", :user
         end

@@ -12,12 +12,12 @@ RSpec.describe Product, type: :model do
       it { should validate_presence_of(:name) }
       it { should validate_presence_of(:barcode) }
       it { should validate_presence_of(:brand) }
-      it { should validate_presence_of(:quantity) }
       it { should allow_value(nil).for(:description) }
     end
 
     context "relationships" do
-      it { should have_and_belong_to_many(:supermarkets) }
+      it { should have_many(:supermarket_products) }
+      it { should have_many(:supermarkets).through(:supermarket_products) }
     end
   end
 end

@@ -23,6 +23,18 @@ RSpec.shared_examples "a json with relationship pattern" do
   end
 end
 
+RSpec.shared_examples "a json with relationship pattern as array" do
+  it "should be returns json pattern" do
+    expect(json["data"]).not_to be_blank
+    expect(json["data"]).not_to be_empty
+    expect(json).to have_key("data")
+    expect(json["data"].first).to have_key("id")
+    expect(json["data"].first).to have_key("type")
+    expect(json["data"].first).to have_key("attributes")
+    expect(json["data"].first).to have_key("relationships")
+  end
+end
+
 RSpec.shared_examples "a json with relationship included pattern" do
   it "should be returns json pattern" do
     expect(json).not_to be_blank
