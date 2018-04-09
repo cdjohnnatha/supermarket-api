@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'dotenv/load'
+require "dotenv/load"
 
 module Api::V1
   class DocsController < ApiController
@@ -26,7 +26,7 @@ module Api::V1
         key :name, "Supermarket API"
         key :description, "Supermarket API operations"
       end
-      key :host, ENV['DOCS_HOST']
+      key :host, ENV["DOCS_HOST"]
       key :basePath, "/v1"
       key :consumes, ["application/json"]
       key :produces, ["application/json"]

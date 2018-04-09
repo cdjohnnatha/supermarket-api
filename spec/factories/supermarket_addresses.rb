@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :supermarket_address do
     lat Faker::Address.latitude
@@ -10,7 +12,7 @@ FactoryBot.define do
     zip Faker::Address.zip
     country Faker::Address.country
     place_id Faker::Address.zip
-    
+
     trait :with_supermarket do
       supermarket_id { create(:supermarket).id }
     end

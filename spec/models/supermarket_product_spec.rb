@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe SupermarketProduct, type: :model do
   it "should have a valid factory" do

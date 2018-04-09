@@ -1,9 +1,11 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "SupermarketAddresses", type: :request do
   let(:supermarket) { create(:supermarket) }
-  let(:valid_attrs) { { supermarket_address: attributes_for(:supermarket_address) }.as_json } 
-  let(:invalid_attrs) { { supermarket_address: attributes_for(:supermarket_address, lat: nil, lng: nil) }.as_json } 
+  let(:valid_attrs) { { supermarket_address: attributes_for(:supermarket_address) }.as_json }
+  let(:invalid_attrs) { { supermarket_address: attributes_for(:supermarket_address, lat: nil, lng: nil) }.as_json }
   let(:user) { create(:user) }
 
   describe "/v1/supermarket/:supermarket_id/products" do
@@ -11,7 +13,7 @@ RSpec.describe "SupermarketAddresses", type: :request do
       before { create(:supermarket_address, supermarket: supermarket) }
       context "when logged in" do
         before(:each) { get v1_supermarket_address_index_path(supermarket.id), headers: authenticated_header(user) }
-        
+
         it "should be returns a success" do
           expect(response).to have_http_status(200)
         end
@@ -72,7 +74,7 @@ RSpec.describe "SupermarketAddresses", type: :request do
 
   describe "/v1/supermarket/:supermarket_id/products/:id" do
     let(:address) { create(:supermarket_address, :with_supermarket, supermarket_id: supermarket.id) }
-    
+
     context "PUT" do
       let(:new_valid_attrs) { valid_attrs }
 
@@ -183,6 +185,6 @@ RSpec.describe "SupermarketAddresses", type: :request do
         it_behaves_like "a unauthorized error"
       end
     end
-    
+
   end
 end

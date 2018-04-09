@@ -1,11 +1,13 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "SupermarketProducts", type: :request do
   let(:supermarket) { create(:supermarket) }
-  let(:valid_arr_attrs) { { supermarket_products: [ attributes_for(:supermarket_product) ].as_json } } 
-  let(:valid_attrs) { { supermarket_products: attributes_for(:supermarket_product).as_json } } 
-  let(:invalid_arr_attrs) { { supermarket_products: [ attributes_for(:supermarket_product, product_id: nil) ].as_json } } 
-  let(:invalid_attrs) { { supermarket_products: attributes_for(:supermarket_product, product_id: nil).as_json } } 
+  let(:valid_arr_attrs) { { supermarket_products: [ attributes_for(:supermarket_product) ].as_json } }
+  let(:valid_attrs) { { supermarket_products: attributes_for(:supermarket_product).as_json } }
+  let(:invalid_arr_attrs) { { supermarket_products: [ attributes_for(:supermarket_product, product_id: nil) ].as_json } }
+  let(:invalid_attrs) { { supermarket_products: attributes_for(:supermarket_product, product_id: nil).as_json } }
   let(:user) { create(:user) }
 
   describe "/v1/supermarket/:supermarket_id/products" do
@@ -13,7 +15,7 @@ RSpec.describe "SupermarketProducts", type: :request do
       before { create(:supermarket_product, :with_supermarket, supermarket_id: supermarket.id) }
       context "when logged in" do
         before(:each) { get v1_supermarket_products_path(supermarket.id), headers: authenticated_header(user) }
-        
+
         it "should be returns a success" do
           expect(response).to have_http_status(200)
         end
@@ -72,7 +74,7 @@ RSpec.describe "SupermarketProducts", type: :request do
 
         it_behaves_like "a unauthorized error"
       end
-    end 
+    end
   end
 
   describe "/v1/supermarket/:supermarket_id/products/:id" do

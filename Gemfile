@@ -44,7 +44,9 @@ gem "fast_jsonapi"
 # Generates swagger-ui json files for Rails APIs with a simple DSL.
 gem "swagger-blocks"
 
+# Shim to load environment variables from .env into ENV in development
 gem "dotenv-rails"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -57,8 +59,6 @@ group :development, :test do
   gem "rails-controller-testing"
   # RuboCop is a Ruby static code analyzer
   gem "rubocop", require: false
-  # Shim to load environment variables from .env into ENV in development
-  gem "dotenv-rails"
   # Use Faker to generate data dynamically
   gem "faker"
   # Ruby library that pretty prints Ruby objects in full color exposing
