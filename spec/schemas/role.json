@@ -1,16 +1,14 @@
 {
-  "data": {
-    "type": "object",
-    "properties": {
-      "type": { "type": "string" },
-      "id": { "type": "integer" },
-      "attributes": {
+  "allOf": [
+    { "$ref": "core.json#/definitions/single_core/data" },
+    {"attributes": 
+      {
+        "required": ["id", "name"],
         "properties": {
-          "id": { "type": "integer" },
-          "name": { "type": "string" },
+           "id": { "type": "integer" },
+          "name": { "type": "string" }
         }
       }
     }
-  }
+  ]
 }
-

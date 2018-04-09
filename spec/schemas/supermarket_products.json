@@ -1,0 +1,6 @@
+{
+  "data": {
+    "type": "array",
+    "items": { "$ref": "supermarket_product.json" }
+  }
+}

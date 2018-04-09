@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "definitions": {
+    "full_core": {
+      "data":{
+        "type": "object",
+        "id": { "type": "integer" },
+        "type": { "type": "string" },
+        "attributes": {
+          "type": "object"
+        },
+        "relationship":{
+          "type": "object"
+        }
+      },
+      "included": [{
+        "type": "object",
+        "id": { "type": "integer" },
+        "type": { "type": "string" }
+      }]
+    },
+
+    "single_core": {
+      "data":{
+        "$ref": "#/definitions/full_core/data"
+      }
+    },
+
+    "core_relationship": {
+      "data":{
+        "$ref": "#/definitions/full_core/data" 
+      },
+      "relationship":{
+        "$ref": "#/definitions/full_core/data/relationship"
+      }
+    }
+  }
+}
