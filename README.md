@@ -53,7 +53,10 @@ The JSON response is following [jsonapi.org](http://jsonapi.org/format/) which y
       "relationships": {
         // ... this supermarket's relationships
       }
-    }
+    },
+    "included": [{
+      // ... this supermarket's extended from relationships
+    }]
   }
 ```
 
