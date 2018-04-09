@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SupermarketProduct, type: :model do
   it "should have a valid factory" do
-    expect(build(:supermarket_product)).to be_valid
+    expect(build(:supermarket_product, :with_supermarket)).to be_valid
   end
 
   describe "ActiveModel validations" do

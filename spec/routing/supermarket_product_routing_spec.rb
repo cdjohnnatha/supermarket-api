@@ -7,7 +7,7 @@ RSpec.describe Api::V1::SupermarketProductsController, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
-      expect(get: "/v1/supermarkets/1/products").to route_to("api/v1/supermarket_products#index")
+      expect(get: "/v1/supermarkets/1/products").to route_to("api/v1/supermarket_products#index", supermarket_id: "1")
     end
 
     it "routes to #show" do
@@ -15,7 +15,7 @@ RSpec.describe Api::V1::SupermarketProductsController, type: :routing do
     end
 
     it "routes to #create" do
-     expect(post: "/v1/supermarkets/1/products").to route_to("api/v1/supermarket_products#create")
+     expect(post: "/v1/supermarkets/1/products").to route_to("api/v1/supermarket_products#create", supermarket_id: "1")
    end
 
     it "routes to #update via PUT" do
