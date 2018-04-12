@@ -192,17 +192,14 @@ class Docs::V1::SupermarketProductsController
       parameter do
         key :in, :body
         key :name, :product
-        key :description, "Add product to supermarket"
+        key :description, "Create product and add to supermarket"
         key :required, true
         schema do
           key :'$ref', :ProductSupermarketProductInput
         end
       end
       response 200 do
-        key :description, "product response"
-        schema do
-          key :'$ref', :SupermarketProduct
-        end
+        key :description, "supermarket product response"
       end
     end
   end
