@@ -13,11 +13,12 @@ class SupermarketProduct < ApplicationRecord
 
   def self.create_product_add_to_supermarket(product_params, supermarket_product_params, supermarket)
     product = Product.create(product_params)
-
+    supermarket_product = supermarket_product_params;
+    
     self.transaction do
       if product.valid?
+        supermarket_product[:product_id] = product.id
         supermarket_product = supermarket.supermarket_products.create(supermarket_product_params)
-        
         if supermarket_product.valid?
           supermarket_product
         else

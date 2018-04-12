@@ -87,6 +87,17 @@ class Docs::SupermarketProduct
       end
   end
 
+  swagger_schema :SupermarketProductPriceInputAttributes do
+      property :supermarket_product_prices_attributes do
+        key :format, :object
+        key :required, [:price]
+        
+        property :price do
+          key :type, :number
+        end
+      end
+  end
+
   swagger_schema :SupermarketProductInput do
     key :required, [:supermarket_products]
 
@@ -98,7 +109,7 @@ class Docs::SupermarketProduct
   swagger_schema :ProductSupermarketProductInput do
     key :'$ref', :ProductInput
     property :supermarket_products do
-      key :'$ref', :SupermarketProductInputAttributes
+      key :'$ref', :SupermarketProductPriceInputAttributes
     end
   end
 end
