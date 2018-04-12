@@ -70,27 +70,35 @@ class Docs::SupermarketProduct
     end
   end
 
+  swagger_schema :SupermarketProductInputAttributes do
+    key :required, [:product_id, :price]
+
+      property :product_id do
+        key :type, :integer
+      end
+
+      property :supermarket_product_prices_attributes do
+        key :format, :object
+        key :required, [:price]
+        
+        property :price do
+          key :type, :number
+        end
+      end
+  end
+
   swagger_schema :SupermarketProductInput do
     key :required, [:supermarket_products]
 
     property :supermarket_products do
-      key :type, :array
-      items do
-        key :required, [:product_id, :price, :quantity, :unit_measure]
+      key :'$ref', :SupermarketProductInputAttributes
+    end
+  end
 
-        property :product_id do
-          key :type, :integer
-        end
-
-        property :supermarket_product_prices_attributes do
-          key :format, :object
-          key :required, [:price]
-          
-          property :price do
-            key :type, :number
-          end
-        end
-      end
+  swagger_schema :ProductSupermarketProductInput do
+    key :'$ref', :ProductInput
+    property :supermarket_products do
+      key :'$ref', :SupermarketProductInputAttributes
     end
   end
 end
