@@ -8,6 +8,8 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: false
-  validates :barcode, presence: true
+  validates :barcode, presence: true, uniqueness: true
   validates :brand, presence: true
+  validates :quantity, presence: true
+  validates :unit_measure, presence: true
 end

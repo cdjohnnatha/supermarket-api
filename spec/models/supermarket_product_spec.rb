@@ -8,15 +8,14 @@ RSpec.describe SupermarketProduct, type: :model do
   end
 
   describe "ActiveModel validations" do
-    context "should require presence" do
-      it { should validate_presence_of(:price) }
-      it { should validate_presence_of(:quantity) }
-      it { should validate_presence_of(:unit_measure) }
-    end
+    # context "should require presence" do
+    #   it { should validate_presence_of(:price) }
+    # end
 
     context "relationships" do
       it { should belong_to(:product) }
       it { should belong_to(:supermarket) }
+      it { should have_many(:supermarket_product_prices) }
     end
   end
 end

@@ -17,20 +17,12 @@ module Api::V1
     end
 
     def create
-      supermarket_product = @supermarket.supermarket_products.build(product_array_params)
+      supermarket_product = @supermarket.supermarket_products.create(supermarket_product_params)
 
-      if supermarket_product.each(&:save)
+      if supermarket_product.valid?
         render json: SupermarketProductSerializer.new(supermarket_product).serialized_json
       else
         render json: supermarket_product.errors, status: :unprocessable_entity
-      end
-    end
-
-    def update
-      if @supermarket_product.update(product_params)
-        render json: SupermarketProductSerializer.new(@supermarket_product).serialized_json
-      else
-        render json: @supermarket_product.errors, status: :unprocessable_entity
       end
     end
 
@@ -38,17 +30,22 @@ module Api::V1
       @supermarket_product.destroy
     end
 
+    def create_and_add
+      supermarket_product = SupermarketProduct.create_product_add_to_supermarket(product_params, supermarket_product_params, @supermarket)
+      if supermarket_product.valid?
+        render json:  SupermarketProductPriceSerializer.new(supermarket_product).serialized_json
+      else
+        render json: supermarket_product.errors, status: :unprocessable_entity
+      end
+    end
+
     private
       def set_supermarket
         @supermarket = Supermarket.find(params[:supermarket_id])
       end
 
-      def product_array_params
-        params.require(:supermarket_products).map { |p| p.permit(:product_id, :price, :quantity, :unit_measure) }
-      end
-
-      def product_params
-        params.require(:supermarket_products).permit(:price, :quantity, :unit_measure)
+      def supermarket_product_params
+        params.require(:supermarket_product).permit(:product_id, supermarket_product_prices_attributes: [:price, :id])
       end
 
       def set_supermarket_product
@@ -58,6 +55,10 @@ module Api::V1
       def set_options
         @options = {}
         @options[:include] = [:product]
+      end
+
+      def product_params
+        params.require(:product).permit(:name, :barcode, :description, :brand, :quantity, :unit_measure)
       end
   end
 end

@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406192105) do
+ActiveRecord::Schema.define(version: 20180409210742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20180406192105) do
     t.text "description"
     t.string "barcode"
     t.string "brand"
+    t.float "quantity"
+    t.string "unit_measure"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,12 +56,17 @@ ActiveRecord::Schema.define(version: 20180406192105) do
     t.index ["supermarket_id"], name: "index_supermarket_addresses_on_supermarket_id"
   end
 
+  create_table "supermarket_product_prices", force: :cascade do |t|
+    t.bigint "supermarket_product_id"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["supermarket_product_id"], name: "index_supermarket_product_prices_on_supermarket_product_id"
+  end
+
   create_table "supermarket_products", force: :cascade do |t|
     t.bigint "supermarket_id"
     t.bigint "product_id"
-    t.float "price"
-    t.float "quantity"
-    t.string "unit_measure"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_supermarket_products_on_product_id"
@@ -90,6 +97,7 @@ ActiveRecord::Schema.define(version: 20180406192105) do
   end
 
   add_foreign_key "supermarket_addresses", "supermarkets"
+  add_foreign_key "supermarket_product_prices", "supermarket_products"
   add_foreign_key "supermarket_products", "products"
   add_foreign_key "supermarket_products", "supermarkets"
 end

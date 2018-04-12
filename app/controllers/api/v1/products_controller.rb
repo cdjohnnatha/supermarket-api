@@ -47,7 +47,7 @@ module Api::V1
       end
 
       def product_params
-        params.require(:product).permit(:name, :barcode, :description, :brand, :quantity)
+        params.require(:product).permit(:name, :barcode, :description, :brand, :quantity, :unit_measure)
       end
 
       def find_barcode

@@ -2,6 +2,6 @@
 
 class SupermarketProductSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :price, :quantity, :unit_measure
+  attributes :id, :price
   belongs_to :product
 end

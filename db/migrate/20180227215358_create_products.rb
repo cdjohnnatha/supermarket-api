@@ -7,6 +7,8 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.text :description, null: true
       t.string :barcode, unique: true
       t.string :brand
+      t.float :quantity
+      t.string :unit_measure
 
       t.timestamps
     end

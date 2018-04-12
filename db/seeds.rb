@@ -16,6 +16,12 @@ Role.create([
 
 User.create([name: "admin_supermarket", email: "admin@supermarketapi.com", password: "adminsupermarket"])
 User.create([name: "user_supermarket", email: "user@supermarketapi.com", password: "usersupermarket"])
-Supermarket.create([name: "Supermarket 1", description: "Supermarket with many things"])
-Product.create([name: "Product 1", description: "product 1 is the best of them", barcode: "ASDF1", brand: "Nestle"])
-Product.create([name: "Product 2", description: "product 2 is the best of them", barcode: "ASDF2", brand: "Nestle"])
+product = Product.create([
+  { name: "Product 2", description: "product 2 is the best of them", barcode: "ASDF2", brand: "Nestle", quantity: 2, unit_measure: "L" },
+  { name: "Product 1", description: "product 1 is the best of them", barcode: "ASDF1", brand: "Nestle", quantity: 1, unit_measure: "L" }
+])
+
+supermarket = Supermarket.create(name: "Supermarket 1", description: "Supermarket with many things")
+product = product.first
+supermarket_product = supermarket.supermarket_products.create(product_id: product.id)
+supermarket_product.supermarket_product_prices.create(price: 1.50)

@@ -20,7 +20,7 @@ class Docs::Product
 
       property :attributes do
         key :format, :object
-        key :required, [:id, :name, :description, :barcode, :brand, :quantity]
+        key :required, [:id, :name, :description, :barcode, :brand, :quantity, :unit_measure]
         property :id do
           key :type, :integer
         end
@@ -42,7 +42,11 @@ class Docs::Product
         end
 
         property :quantity do
-          key :type, :integer
+          key :type, :number
+        end
+
+        property :unit_measure do
+          key :type, :string
         end
       end
     end
@@ -53,7 +57,7 @@ class Docs::Product
 
     property :product do
       key :format, :object
-      key :required, [:name, :description, :barcode, :brand, :quantity]
+      key :required, [:name, :description, :barcode, :brand, :quantity, :unit_measure]
 
       property :name do
         key :type, :string
@@ -72,7 +76,11 @@ class Docs::Product
       end
 
       property :quantity do
-        key :type, :integer
+          key :type, :number
+        end
+
+      property :unit_measure do
+        key :type, :string
       end
     end
   end

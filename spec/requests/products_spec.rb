@@ -96,12 +96,7 @@ RSpec.describe "Products", type: :request do
 
           it_behaves_like "a json pattern" do
             let(:body) { json }
-            let(:attrs) { valid_attrs }
-          end
-
-          it_behaves_like "a product attributes" do
-            let(:body) { json }
-            let(:attrs) { valid_attrs }
+            let(:attrs) { product.as_json }
           end
         end
         context "invalid product attributes" do

@@ -12,6 +12,8 @@ RSpec.describe Product, type: :model do
       it { should validate_presence_of(:name) }
       it { should validate_presence_of(:barcode) }
       it { should validate_presence_of(:brand) }
+      it { should validate_presence_of(:quantity) }
+      it { should validate_presence_of(:unit_measure) }
       it { should allow_value(nil).for(:description) }
     end
 

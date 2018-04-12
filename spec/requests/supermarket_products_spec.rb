@@ -4,10 +4,8 @@ require "rails_helper"
 
 RSpec.describe "SupermarketProducts", type: :request do
   let(:supermarket) { create(:supermarket) }
-  let(:valid_arr_attrs) { { supermarket_products: [ attributes_for(:supermarket_product) ].as_json } }
-  let(:valid_attrs) { { supermarket_products: attributes_for(:supermarket_product).as_json } }
-  let(:invalid_arr_attrs) { { supermarket_products: [ attributes_for(:supermarket_product, product_id: nil) ].as_json } }
-  let(:invalid_attrs) { { supermarket_products: attributes_for(:supermarket_product, product_id: nil).as_json } }
+  let(:valid_attrs) { { supermarket_product: attributes_for(:supermarket_product, :with_price).as_json } }
+  let(:invalid_attrs) { { supermarket_product: attributes_for(:supermarket_product, product_id: nil).as_json } }
   let(:user) { create(:user) }
 
   describe "/v1/supermarket/:supermarket_id/products" do
@@ -40,7 +38,7 @@ RSpec.describe "SupermarketProducts", type: :request do
 
     context "POST" do
       context "valid supermarket product attributes" do
-        before(:each) { post v1_supermarket_products_path(supermarket.id), params: valid_arr_attrs, headers: authenticated_header(user) }
+        before(:each) { post v1_supermarket_products_path(supermarket.id), params: valid_attrs, headers: authenticated_header(user) }
 
         it "should return a created supermarket product" do
           expect(response).to have_http_status(200)
@@ -50,35 +48,92 @@ RSpec.describe "SupermarketProducts", type: :request do
           expect(response).to match_response_schema("supermarket_product")
         end
 
-        it_behaves_like "a json with relationship pattern as array" do
+        it_behaves_like "a json with relationship pattern" do
           let(:body) { json }
-          let(:attrs) { valid_arr_attrs }
+          let(:attrs) { valid_attrs }
         end
 
-        it_behaves_like "a supermarket products attributes" do
+        it_behaves_like "a supermarket product attributes" do
           let(:body) { json }
-          let(:attrs) { valid_arr_attrs }
+          let(:attrs) { valid_attrs }
         end
       end
 
       context "invalid product attributes" do
-        before(:each) { post v1_supermarket_products_path(supermarket.id), params: invalid_arr_attrs, headers: authenticated_header(user) }
+        before(:each) { post v1_supermarket_products_path(supermarket.id), params: invalid_attrs, headers: authenticated_header(user) }
 
-        it "should return a created supermarket product" do
-          expect(response).to have_http_status(200)
-        end
+        it_behaves_like "a unprocessable error", :supermarketProduct
       end
 
       context "when logged out" do
-        before(:each) { post v1_supermarket_products_path(supermarket.id), params: valid_arr_attrs }
+        before(:each) { post v1_supermarket_products_path(supermarket.id), params: valid_attrs }
 
         it_behaves_like "a unauthorized error"
+      end
+    end
+
+    context "create product and add to supermarket" do
+      context "valid attributes" do
+        let(:product_supermarket_product) { 
+          { 
+            product: attributes_for(:product).as_json,  
+            supermarket_product: attributes_for(:supermarket_product, :with_price).as_json
+          } 
+        }
+
+        before(:each) { post v1_supermarket_create_and_add_path(supermarket.id), params: product_supermarket_product, headers: authenticated_header(user) }
+
+        it "should return a created product and added to supermarket" do
+          expect(response).to have_http_status(200)
+        end
+
+        it "validate serializer" do
+          expect(response).to match_response_schema("supermarket_product")
+        end
+
+        it_behaves_like "a json pattern" do
+          let(:body) { json }
+          let(:attrs) { product_supermarket_product }
+        end
+
+        it_behaves_like "a supermarket product attributes" do
+          let(:body) { json }
+          let(:attrs) { product_supermarket_product }
+        end
+      end
+
+      context "invalid attributes" do
+        let(:invalid_product) {
+            {
+              product: attributes_for(:product, barcode: nil).as_json,  
+              supermarket_product: attributes_for(:supermarket_product, :with_price, product_id: 0).as_json
+            } 
+        }
+
+        let(:invalid_product_supermarket_product) { 
+          { 
+            product: attributes_for(:product).as_json,  
+            supermarket_product: attributes_for(:supermarket_product, :with_price, product_id: 0).as_json
+          } 
+        }
+
+        context "invalid supermarket product attributes" do
+          before(:each) { post v1_supermarket_create_and_add_path(supermarket.id), params: invalid_product_supermarket_product, headers: authenticated_header(user) }
+
+          it_behaves_like "a unprocessable error", :supermarketProduct
+        end
+
+        context "invalid product attributes" do
+          before(:each) { post v1_supermarket_create_and_add_path(supermarket.id), params: invalid_product, headers: authenticated_header(user) }
+
+          it_behaves_like "a unprocessable error", :supermarketProduct
+        end
       end
     end
   end
 
   describe "/v1/supermarket/:supermarket_id/products/:id" do
-    let(:product) { create(:supermarket_product, :with_supermarket, supermarket_id: supermarket.id) }
+    let(:product) { create(:supermarket_product, :with_price, :with_supermarket, supermarket_id: supermarket.id) }
 
     context "GET" do
       context "when logged in" do
@@ -120,92 +175,6 @@ RSpec.describe "SupermarketProducts", type: :request do
 
           it_behaves_like "a unauthorized error"
         end
-      end
-    end
-
-    context "PUT" do
-      let(:new_valid_attrs) { valid_attrs }
-
-      context "when logged in" do
-        context "valid supermarket product attributes" do
-          before(:each) { put v1_supermarket_product_path(supermarket.id, product.id), params: new_valid_attrs, headers: authenticated_header(user) }
-
-          it "should be returns success" do
-            expect(response.content_type).to eq("application/json")
-            expect(response).to have_http_status(200)
-          end
-
-          it "validate supermarket product serializer" do
-            expect(response).to match_response_schema("supermarket_product")
-          end
-
-          it_behaves_like "a json pattern" do
-            let(:body) { json }
-            let(:attrs) { valid_attrs }
-          end
-
-          it_behaves_like "a supermarket product attributes" do
-            let(:body) { json }
-            let(:attrs) { valid_attrs }
-          end
-        end
-
-        context "with invalid supermarket product attributes" do
-          describe "invalid id" do
-            before(:each) { put v1_supermarket_product_path(supermarket.id, 0), params: new_valid_attrs, headers: authenticated_header(user) }
-
-            it_behaves_like "a not found error", :supermarketProduct, 0
-          end
-        end
-      end
-
-      context "when logged out" do
-        before(:each) { put v1_supermarket_product_path(supermarket.id, product.id), params: new_valid_attrs }
-
-        it_behaves_like "a unauthorized error"
-      end
-    end
-
-    context "PATCH" do
-      let(:new_valid_attrs) { valid_attrs }
-
-      context "when logged in" do
-        context "valid supermarket product attributes" do
-          before(:each) { patch v1_supermarket_product_path(supermarket.id, product.id), params: new_valid_attrs, headers: authenticated_header(user) }
-
-          it "should be returns success" do
-            expect(response.content_type).to eq("application/json")
-            expect(response).to have_http_status(200)
-          end
-
-          it "validate supermarket product serializer" do
-            expect(response).to match_response_schema("supermarket_product")
-          end
-
-          it_behaves_like "a json pattern" do
-            let(:body) { json }
-            let(:attrs) { valid_attrs }
-          end
-
-          it_behaves_like "a supermarket product attributes" do
-            let(:body) { json }
-            let(:attrs) { valid_attrs }
-          end
-        end
-
-        context "with invalid supermarket product attributes" do
-          describe "invalid id" do
-            before(:each) { patch v1_supermarket_product_path(supermarket.id, 0), params: new_valid_attrs, headers: authenticated_header(user) }
-
-            it_behaves_like "a not found error", :supermarketProduct, 0
-          end
-        end
-      end
-
-      context "when logged out" do
-        before(:each) { patch v1_supermarket_product_path(supermarket.id, product.id), params: new_valid_attrs }
-
-        it_behaves_like "a unauthorized error"
       end
     end
 
