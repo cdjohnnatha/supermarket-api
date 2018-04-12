@@ -4,7 +4,7 @@ module Api::V1
   class SupermarketProductsController < ApiController
     before_action :set_supermarket
     before_action :set_supermarket_product, only: [:destroy, :show, :update]
-    before_action :set_options, only: [:index, :show]
+    before_action :set_options, only: [:index, :show, :supermarket_product_barcode]
 
     def index
       supermarket_products = @supermarket.supermarket_products
@@ -42,7 +42,7 @@ module Api::V1
     def supermarket_product_barcode
       supermarket_product = SupermarketProduct.barcode(barcode_params, @supermarket.id)
 
-      render json: supermarket_product
+      render json: SupermarketProductSerializer.new(supermarket_product, @options).serialized_json
     end
 
     private
