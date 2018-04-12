@@ -21,5 +21,9 @@ RSpec.describe Api::V1::SupermarketProductsController, type: :routing do
     it "routes to #destroy" do
       expect(delete: "/v1/supermarkets/1/products/1").to route_to("api/v1/supermarket_products#destroy", supermarket_id: "1", id: "1")
     end
+
+    it "routes to #create_and_add" do
+      expect(post: "/v1/supermarkets/1/products/create-add").to route_to("api/v1/supermarket_products#create_and_add", supermarket_id: "1")
+    end
   end
 end
