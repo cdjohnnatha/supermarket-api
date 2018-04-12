@@ -203,4 +203,40 @@ class Docs::V1::SupermarketProductsController
       end
     end
   end
+
+  swagger_path "/supermarkets/{supermarket_id}/products/barcode/{barcode}" do
+    operation :get do
+      key :sumary, "Get product by barcode in a supermarket"
+      key :description, "Returns a product from a supermarket by barcode"
+      key :operationId, "finbProductSupermarketProductByBarcode"
+      key :produces, [
+        "application/json"
+      ]
+      key :tags, [
+        "Supermarket Products"
+      ]
+      security do
+        key :auth, []
+      end
+      parameter do
+        key :in, :path
+        key :name, :supermarket_id
+        key :description, "Id of supermarket"
+        key :required, true
+        key :type, :integer
+      end
+
+      parameter do
+        key :in, :path
+        key :name, :barcode
+        key :description, "Id of supermarket"
+        key :required, true
+        key :type, :string
+      end
+
+      response 200 do
+        key :description, "supermarket products response"
+      end
+    end
+  end
 end

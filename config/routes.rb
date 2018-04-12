@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :supermarkets do
         # create a product and add into supermarket_product
         post "/products/create-add", to: "supermarket_products#create_and_add", as: "create_and_add"
+        get "/products/barcode/:barcode", to: "supermarket_products#supermarket_product_barcode", as: "supermarket_product_barcode"
         resources :products, except: [:update], controller: :supermarket_products do
           post "/prices/date-range", to: "supermarket_product_prices#range", as: "prices_range"
           resources :prices, controller: :supermarket_product_prices

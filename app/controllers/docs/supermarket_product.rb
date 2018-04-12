@@ -78,11 +78,12 @@ class Docs::SupermarketProduct
       end
 
       property :supermarket_product_prices_attributes do
-        key :format, :object
-        key :required, [:price]
-        
-        property :price do
-          key :type, :number
+        key :type, :array
+        items do
+          key :required, [:price]
+          property :price do
+            key :type, :number
+          end
         end
       end
   end

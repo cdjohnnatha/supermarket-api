@@ -7,6 +7,15 @@ class SupermarketProduct < ApplicationRecord
 
   accepts_nested_attributes_for :supermarket_product_prices, reject_if: proc { |attrs| attrs[:price].nil? }
 
+  validates_uniqueness_of :product_id, scope: :supermarket_id
+
+
+
+  scope :barcode, -> (barcode, supermarket_id) { 
+    product = Product.find_by_barcode(barcode)
+    where(product_id: product.id, supermarket_id: supermarket_id)
+  }
+
   def price
     self.supermarket_product_prices.select(:id, :price, :created_at).last
   end

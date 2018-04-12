@@ -39,6 +39,12 @@ module Api::V1
       end
     end
 
+    def supermarket_product_barcode
+      supermarket_product = SupermarketProduct.barcode(barcode_params, @supermarket.id)
+
+      render json: supermarket_product
+    end
+
     private
       def set_supermarket
         @supermarket = Supermarket.find(params[:supermarket_id])
@@ -59,6 +65,10 @@ module Api::V1
 
       def product_params
         params.require(:product).permit(:name, :barcode, :description, :brand, :quantity, :unit_measure)
+      end
+
+      def barcode_params
+        params[:barcode]
       end
   end
 end
