@@ -100,16 +100,16 @@ class Docs::SupermarketProduct
   end
 
   swagger_schema :SupermarketProductInput do
-    key :required, [:supermarket_products]
+    key :required, [:supermarket_product]
 
-    property :supermarket_products do
+    property :supermarket_product do
       key :'$ref', :SupermarketProductInputAttributes
     end
   end
 
   swagger_schema :ProductSupermarketProductInput do
     key :'$ref', :ProductInput
-    property :supermarket_products do
+    property :supermarket_product do
       key :'$ref', :SupermarketProductPriceInputAttributes
     end
   end

@@ -25,24 +25,12 @@ class Docs::SupermarketProductPrice
 
   swagger_schema :SupermarketProductPriceInput do
     key :required, [:supermarket_products]
+    property :supermarket_product_price do
+      key :format, :object
+      key :required, [:price]
 
-    property :supermarket_products do
-      key :type, :array
-      items do
-        key :required, [:product_id, :price, :quantity, :unit_measure]
-
-        property :product_id do
-          key :type, :integer
-        end
-
-        property :supermarket_product_prices_attributes do
-          key :format, :object
-          key :required, [:price]
-
-          property :price do
-            key :type, :number
-          end
-        end
+      property :price do
+        key :type, :number
       end
     end
   end
