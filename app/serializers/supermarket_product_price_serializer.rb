@@ -2,5 +2,5 @@
 
 class SupermarketProductPriceSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :price, :created_at
+  attributes :price, :created_at
 end

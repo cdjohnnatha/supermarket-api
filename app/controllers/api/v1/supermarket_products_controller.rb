@@ -13,7 +13,7 @@ module Api::V1
     end
 
     def show
-      render json: SupermarketProductSerializer.new(@supermarket_product, @options).serialized_json
+      render json: SupermarketProductSerializer.new(@supermarket_product, @options).serializable_hash
     end
 
     def create

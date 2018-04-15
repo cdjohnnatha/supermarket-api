@@ -2,6 +2,6 @@
 
 class SupermarketSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :name, :description
+  attributes :name, :description
   has_one :supermarket_address
 end
