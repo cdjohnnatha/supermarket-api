@@ -5,6 +5,8 @@ class Supermarket < ApplicationRecord
   has_many :products, through: :supermarket_products
   has_one :supermarket_address
 
+  accepts_nested_attributes_for :supermarket_address
+
   validates :name, presence: true
   validates :description, presence: false
 end

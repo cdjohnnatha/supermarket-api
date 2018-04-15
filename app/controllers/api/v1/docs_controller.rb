@@ -54,6 +54,7 @@ module Api::V1
       Docs::V1::SupermarketAddressController,
       Docs::SupermarketProductPrice,
       Docs::V1::SupermarketProductPricesController,
+      Docs::Core,
       self,
     ].freeze
 
